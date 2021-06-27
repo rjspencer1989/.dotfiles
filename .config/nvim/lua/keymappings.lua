@@ -1,0 +1,5 @@
+vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', {silent = true})
+vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', {silent = true})
+vim.api.nvim_set_keymap('n', '<F2>', ':NvimTreeToggle<CR>', {silent = true})

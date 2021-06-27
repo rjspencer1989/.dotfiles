@@ -1,0 +1,3 @@
+[submodule "/home/rob/.config/nvim/lua-language-server"]
+	path = /home/rob/.config/nvim/lua-language-server
+	url = https://github.com/sumneko/lua-language-server
