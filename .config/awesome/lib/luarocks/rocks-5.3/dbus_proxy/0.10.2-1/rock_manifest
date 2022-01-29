@@ -1,0 +1,22 @@
+rock_manifest = {
+   ["dbus_proxy-0.10.2-1.rockspec"] = "2c124bbc69bce7709daa154da38707a0",
+   docs = {
+      ["index.html"] = "6ea704801cb347fbf45d2dfe4ebe2e63",
+      ["ldoc.css"] = "e2b04e90ff648f8e00d9d4d458de59d9",
+      topics = {
+         ["README.md.html"] = "0a1331870a8fc27da7119f46e698301a"
+      }
+   },
+   lua = {
+      dbus_proxy = {
+         ["_bus.lua"] = "821263ff1c80a4a0625d966832c05591",
+         ["_monitored.lua"] = "6da9249060f0422c8ed5c274225d5477",
+         ["_proxy.lua"] = "ce9d5f9f235e488e5af1940c87ffd562",
+         ["_variant.lua"] = "6f1ba272f64f35910dbb5c6f8c25e95f",
+         ["init.lua"] = "da063cad586a4dbfc2239457b1faa30a"
+      }
+   },
+   tests = {
+      ["proxy_spec.lua"] = "9413c6601a63e9b4c9326683915ecb29"
+   }
+}
