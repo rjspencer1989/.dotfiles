@@ -2,8 +2,8 @@ return require('packer').startup(function()
 
   -- Packer can manage itself as an optional plugin
   use {'wbthomason/packer.nvim', opt=true}
-
     -- Development
+    use {'https://github.com/mesonbuild/meson'}
     use {'tpope/vim-dispatch'}
     use {'tpope/vim-fugitive'}
     use {'tpope/vim-surround'}
@@ -16,13 +16,7 @@ return require('packer').startup(function()
     use {'easymotion/vim-easymotion'}
     use {
         'lewis6991/gitsigns.nvim',
-        -- config = function() require('gitsigns').setup() end
-    }
-    use {
-        'TimUntersberger/neogit',
-        config = function()
-            require('neogit').setup {integrations = {diffview = true}}
-        end
+         config = function() require('gitsigns').setup() end
     }
     use {'sindrets/diffview.nvim'}
     use {'unblevable/quick-scope'}
@@ -33,10 +27,12 @@ return require('packer').startup(function()
         config = function() require("which-key").setup {} end
     }
     use {'chrisbra/NrrwRgn'}
-
+    use {'fatih/vim-go'}
     use {'kyazdani42/nvim-web-devicons'}
     use {'sainnhe/gruvbox-material'}
     use {'NLKNguyen/papercolor-theme'}
+    use {'vhdirk/vim-cmake'}
+    use {'regen100/cmake-language-server'}
 
     -- Telescope
     use {'nvim-lua/plenary.nvim'}
@@ -67,10 +63,11 @@ return require('packer').startup(function()
     use {'kevinhwang91/nvim-bqf'}
     use {
         "folke/trouble.nvim",
-    --    config = function() require("trouble").setup {} end
+        config = function() require("trouble").setup {} end
     }
 
       use {'hrsh7th/vim-vsnip'}
+      use {'hrsh7th/vim-vsnip-integ'}
     use {'rafamadriz/friendly-snippets'}
     use {'cstrap/python-snippets'}
     use {'ylcnfrht/vscode-python-snippet-pack'}
@@ -106,7 +103,6 @@ return require('packer').startup(function()
 
     -- Project
     use {'nvim-telescope/telescope-project.nvim'}
-    use {'airblade/vim-rooter'}
 
     -- Development workflow
     use {'voldikss/vim-browser-search'}

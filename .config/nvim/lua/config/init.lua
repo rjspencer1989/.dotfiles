@@ -1,2 +1,4 @@
 require('config.compe')
-require('telescope')
+require('config.telescope')
+require('config.nvtree')
+require('config.lsp')

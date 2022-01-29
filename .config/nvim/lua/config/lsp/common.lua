@@ -1,6 +1,7 @@
+common = {}
 USER = vim.fn.expand('$USER')
 -- Your custom attach function for nvim-lspconfig goes here.
-local on_attach = function(client, bufnr)
+common.on_attach = function(client, bufnr)
     require'lsp_signature'.on_attach(client)
 
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -50,11 +51,10 @@ local on_attach = function(client, bufnr)
     end
 end
 
-local nvim_lsp = require('lspconfig')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+common.capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Code actions
-capabilities.textDocument.codeAction = {
+common.capabilities.textDocument.codeAction = {
   dynamicRegistration = false;
       codeActionLiteralSupport = {
           codeActionKind = {
@@ -71,93 +71,4 @@ capabilities.textDocument.codeAction = {
           };
       };
 }
--- LSPs
-local servers = { "gopls", "tsserver"}
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {capabilities = capabilities, on_attach = on_attach}
-end
-
--- Lua LSP
-local sumneko_root_path = ""
-local sumneko_binary = ""
-
-if vim.fn.has("mac") == 1 then
-    sumneko_root_path = "/Users/" .. USER .. "/.config/nvim/lua-language-server"
-    sumneko_binary = "/Users/" .. USER ..
-                         "/.config/nvim/lua-language-server/bin/macOS/lua-language-server"
-elseif vim.fn.has("unix") == 1 then
-    sumneko_root_path = "/home/" .. USER .. "/.config/nvim/lua-language-server"
-    sumneko_binary = "/home/" .. USER ..
-                         "/.config/nvim/lua-language-server/bin/Linux/lua-language-server"
-else
-    print("Unsupported system for sumneko")
-end
-
--- lua-dev.nvim
-local luadev = require("lua-dev").setup({
-    library = {vimruntime = true, types = true, plugins = true},
-    lspconfig = {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-        settings = {
-            Lua = {
-                runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                    -- Setup your lua path
-                    path = vim.split(package.path, ';')
-                },
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = {'vim'}
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = {
-                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-                    }
-                }
-            }
-        }
-    }
-})
-nvim_lsp.sumneko_lua.setup(luadev)
--- symbols-outline.nvim
-vim.g.symbols_outline = {
-    highlight_hovered_item = true,
-    show_guides = true,
-    auto_preview = false, -- experimental
-    position = 'right',
-    keymaps = {
-        close = "<Esc>",
-        goto_location = "<Cr>",
-        focus_location = "o",
-        hover_symbol = "<C-space>",
-        rename_symbol = "r",
-        code_actions = "a"
-    },
-    lsp_blacklist = {}
-}
-
-do
-    local method = "textDocument/publishDiagnostics"
-    local default_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr,
-                                        config)
-        default_handler(err, method, result, client_id, bufnr, config)
-        local diagnostics = vim.lsp.diagnostic.get_all()
-        local qflist = {}
-        for bufnr, diagnostic in pairs(diagnostics) do
-            for _, d in ipairs(diagnostic) do
-                d.bufnr = bufnr
-                d.lnum = d.range.start.line + 1
-                d.col = d.range.start.character + 1
-                d.text = d.message
-                table.insert(qflist, d)
-            end
-        end
-        vim.lsp.util.set_qflist(qflist)
-    end
-end
+return common
