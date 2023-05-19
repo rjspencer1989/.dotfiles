@@ -100,7 +100,7 @@ local altkey       = "Mod1"
 local modkey1      = "Control"
 -- personal variables
 --change these variables if you want
-local browser1          = "google-chrome-stable"
+local browser1          = "firefox"
 local browser2          = "vimb"
 local browser3          = "edge"
 local editor            = os.getenv("EDITOR") or "nvim"
@@ -108,7 +108,7 @@ local editorgui         = "code"
 local filemanager       = "thunar"
 local mailclient        = "evolution"
 local mediaplayer       = "spotify"
-local terminal          = "alacritty"
+local terminal          = "kitty"
 local virtualmachine    = "virt-manager"
 -- awesome variables
 awful.util.terminal = terminal
@@ -121,27 +121,7 @@ awful.util.tagnames = {  "➊", "➋", "➌", "➍", "➎", "➏", "➐", "➑",
 awful.layout.suit.tile.left.mirror = true
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.floating,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
-    --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    --awful.layout.suit.corner.ne,
-    --awful.layout.suit.corner.sw,
-    --awful.layout.suit.corner.se,
-    --lain.layout.cascade,
-    --lain.layout.cascade.tile,
-    --lain.layout.centerwork,
-    --lain.layout.centerwork.horizontal,
-    --lain.layout.termfair,
-    --lain.layout.termfair.center,
 }
 
 awful.util.taglist_buttons = my_table.join(
@@ -196,32 +176,7 @@ awful.util.tasklist_buttons = my_table.join(
     awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
 )
 
-lain.layout.termfair.nmaster           = 3
-lain.layout.termfair.ncol              = 1
-lain.layout.termfair.center.nmaster    = 3
-lain.layout.termfair.center.ncol       = 1
-lain.layout.cascade.tile.offset_x      = dpi(2)
-lain.layout.cascade.tile.offset_y      = dpi(32)
-lain.layout.cascade.tile.extra_padding = dpi(5)
-lain.layout.cascade.tile.nmaster       = 5
-lain.layout.cascade.tile.ncol          = 2
-
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
--- }}}
-
--- {{{ Helper functions
-local function client_menu_toggle_fn()
-    local instance = nil
-
-    return function ()
-        if instance and instance.wibox.visible then
-            instance:hide()
-            instance = nil
-        else
-            instance = awful.menu.clients({ theme = { width = 250 } })
-        end
-    end
-end
 -- }}}
 
 -- {{{ Menu
@@ -297,10 +252,9 @@ globalkeys = my_table.join(
     -- dmenu
     awful.key({ modkey, "Shift"   }, "d",
     function ()
-        awful.spawn(string.format("dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn NotoMonoRegular:bold:pixelsize=14",
-        beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
+        awful.spawn("rofi -show drun")
 	end,
-    {description = "show dmenu", group = "hotkeys"}),
+    {description = "show rofi", group = "hotkeys"}),
 
     -- Function keys
     awful.key({ }, "F12", function () awful.util.spawn( "xfce4-terminal --drop-down" ) end,
@@ -362,10 +316,10 @@ globalkeys = my_table.join(
 
 
     -- ctrl+alt +  ...
-    awful.key({ modkey1, altkey   }, "w", function() awful.util.spawn( "arcolinux-welcome-app" ) end,
-        {description = "ArcoLinux Welcome App", group = "alt+ctrl"}),
-    awful.key({ modkey1, altkey   }, "e", function() awful.util.spawn( "arcolinux-tweak-tool" ) end,
-        {description = "ArcoLinux Tweak Tool", group = "alt+ctrl"}),
+    awful.key({ modkey1, altkey   }, "w", function() awful.spawn.with_shell( "~/.screenlayout/laptop_disabled.sh" ) end,
+        {description = "Disable laptop screen", group = "screen"}),
+    awful.key({ modkey1, altkey   }, "e", function() awful.spawn.with_shell( "~/.screenlayout/laptop_only.sh" ) end,
+        {description = "Laptop screen only", group = "screen"}),
     awful.key({ modkey1, altkey   }, "Next", function() awful.util.spawn( "conky-rotate -n" ) end,
         {description = "Next conky rotation", group = "alt+ctrl"}),
     awful.key({ modkey1, altkey   }, "Prior", function() awful.util.spawn( "conky-rotate -p" ) end,
@@ -955,7 +909,7 @@ awful.rules.rules = {
     -- find class or role via xprop command
 
     { rule = { class = editorgui },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = "Geany" },
           properties = { maximized = false, floating = false } },
@@ -963,23 +917,30 @@ awful.rules.rules = {
     -- { rule = { class = "Thunar" },
     --     properties = { maximized = false, floating = false } },
 
+    {rule = {class = "wpsoffice" },
+        properties = {maximized = false, floating = false } },
+    {rule = {class = "gitkraken"}, properties = {maximized = false, floating = false}},
+{rule = {class = "google-chrome" },
+        properties = {maximized = false, floating = false } },
+{rule = {class = "wireshark" },
+        properties = {maximized = false, floating = false } },
     { rule = { class = "Gimp*", role = "gimp-image-window" },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = "Gnome-disks" },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = "inkscape" },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = mediaplayer },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = "Vlc" },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = "VirtualBox Manager" },
-          properties = { maximized = true } },
+          properties = { maximized = false } },
 
     { rule = { class = "VirtualBox Machine" },
           properties = { maximized = true } },
@@ -1026,8 +987,7 @@ awful.rules.rules = {
           "Wpa_gui",
           "pinentry",
           "veromix",
-          "xtightvncviewer",
-          "Xfce4-terminal"},
+          "xtightvncviewer"},
 
         name = {
           "Event Tester",  -- xev.
@@ -1116,3 +1076,4 @@ beautiful.useless_gap = 5
 hotkeys_popup_keys.tmux.add_rules_for_terminal({rule = {name = "tmux"}})
 awful.spawn.with_shell("~/.config/awesome/autostart.sh")
 awful.spawn.with_shell("picom -b --config  $HOME/.config/awesome/picom.conf")
+awful.spawn.with_shell("~/.screenlayout/multimonitor.sh")
