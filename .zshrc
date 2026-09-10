@@ -1,5 +1,3 @@
-neofetch
-
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/opt/firestorm-install:$HOME/.config/emacs/bin:$PATH
 
