@@ -1,0 +1,371 @@
+commands = {}
+dependencies = {
+   dbus_proxy = {
+      ["0.10.2-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         },
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 9, 0, string = "0.9.0"
+                  }
+               },
+               {
+                  op = "<",
+                  version = {
+                     1, string = "1"
+                  }
+               }
+            },
+            name = "lgi"
+         }
+      }
+   },
+   enum = {
+      ["0.1.1-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   lgi = {
+      ["0.9.2-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   power_widget = {
+      ["0.5.4-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         },
+         {
+            constraints = {},
+            name = "upower_dbus"
+         }
+      }
+   },
+   upower_dbus = {
+      ["0.3.0-3"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         },
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 8, 0, string = "0.8.0"
+                  }
+               },
+               {
+                  op = "<",
+                  version = {
+                     0, 11, string = "0.11"
+                  }
+               }
+            },
+            name = "dbus_proxy"
+         },
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 1, 0, string = "0.1.0"
+                  }
+               },
+               {
+                  op = "<",
+                  version = {
+                     0, 2, string = "0.2"
+                  }
+               }
+            },
+            name = "enum"
+         }
+      }
+   }
+}
+modules = {
+   ["dbus_proxy._bus"] = {
+      "dbus_proxy/0.10.2-1"
+   },
+   ["dbus_proxy._monitored"] = {
+      "dbus_proxy/0.10.2-1"
+   },
+   ["dbus_proxy._proxy"] = {
+      "dbus_proxy/0.10.2-1"
+   },
+   ["dbus_proxy._variant"] = {
+      "dbus_proxy/0.10.2-1"
+   },
+   ["dbus_proxy.init"] = {
+      "dbus_proxy/0.10.2-1"
+   },
+   ["enum.init"] = {
+      "enum/0.1.1-1"
+   },
+   lgi = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.class"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.component"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.core"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.corelgilua51"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.enum"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.ffi"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.init"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.log"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.namespace"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Clutter"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib-Bytes"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib-Error"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib-Markup"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib-Source"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib-Timer"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GLib-Variant"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GObject-Closure"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GObject-Object"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GObject-Type"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GObject-Value"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Gdk"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Gio"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Gio-DBus"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.GooCanvas"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Gst"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Gtk"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.Pango"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.PangoCairo"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.override.cairo"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.package"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.record"] = {
+      "lgi/0.9.2-1"
+   },
+   ["lgi.version"] = {
+      "lgi/0.9.2-1"
+   },
+   power_widget = {
+      "power_widget/0.5.4-1"
+   },
+   ["upower_dbus.init"] = {
+      "upower_dbus/0.3.0-3"
+   }
+}
+repository = {
+   dbus_proxy = {
+      ["0.10.2-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               lgi = "0.9.2-1"
+            },
+            modules = {
+               ["dbus_proxy._bus"] = "dbus_proxy/_bus.lua",
+               ["dbus_proxy._monitored"] = "dbus_proxy/_monitored.lua",
+               ["dbus_proxy._proxy"] = "dbus_proxy/_proxy.lua",
+               ["dbus_proxy._variant"] = "dbus_proxy/_variant.lua",
+               ["dbus_proxy.init"] = "dbus_proxy/init.lua"
+            }
+         }
+      }
+   },
+   enum = {
+      ["0.1.1-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["enum.init"] = "enum/init.lua"
+            }
+         }
+      }
+   },
+   lgi = {
+      ["0.9.2-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               lgi = "lgi.lua",
+               ["lgi.class"] = "lgi/class.lua",
+               ["lgi.component"] = "lgi/component.lua",
+               ["lgi.core"] = "lgi/core.lua",
+               ["lgi.corelgilua51"] = "lgi/corelgilua51.so",
+               ["lgi.enum"] = "lgi/enum.lua",
+               ["lgi.ffi"] = "lgi/ffi.lua",
+               ["lgi.init"] = "lgi/init.lua",
+               ["lgi.log"] = "lgi/log.lua",
+               ["lgi.namespace"] = "lgi/namespace.lua",
+               ["lgi.override.Clutter"] = "lgi/override/Clutter.lua",
+               ["lgi.override.GLib"] = "lgi/override/GLib.lua",
+               ["lgi.override.GLib-Bytes"] = "lgi/override/GLib-Bytes.lua",
+               ["lgi.override.GLib-Error"] = "lgi/override/GLib-Error.lua",
+               ["lgi.override.GLib-Markup"] = "lgi/override/GLib-Markup.lua",
+               ["lgi.override.GLib-Source"] = "lgi/override/GLib-Source.lua",
+               ["lgi.override.GLib-Timer"] = "lgi/override/GLib-Timer.lua",
+               ["lgi.override.GLib-Variant"] = "lgi/override/GLib-Variant.lua",
+               ["lgi.override.GObject-Closure"] = "lgi/override/GObject-Closure.lua",
+               ["lgi.override.GObject-Object"] = "lgi/override/GObject-Object.lua",
+               ["lgi.override.GObject-Type"] = "lgi/override/GObject-Type.lua",
+               ["lgi.override.GObject-Value"] = "lgi/override/GObject-Value.lua",
+               ["lgi.override.Gdk"] = "lgi/override/Gdk.lua",
+               ["lgi.override.Gio"] = "lgi/override/Gio.lua",
+               ["lgi.override.Gio-DBus"] = "lgi/override/Gio-DBus.lua",
+               ["lgi.override.GooCanvas"] = "lgi/override/GooCanvas.lua",
+               ["lgi.override.Gst"] = "lgi/override/Gst.lua",
+               ["lgi.override.Gtk"] = "lgi/override/Gtk.lua",
+               ["lgi.override.Pango"] = "lgi/override/Pango.lua",
+               ["lgi.override.PangoCairo"] = "lgi/override/PangoCairo.lua",
+               ["lgi.override.cairo"] = "lgi/override/cairo.lua",
+               ["lgi.package"] = "lgi/package.lua",
+               ["lgi.record"] = "lgi/record.lua",
+               ["lgi.version"] = "lgi/version.lua"
+            }
+         }
+      }
+   },
+   power_widget = {
+      ["0.5.4-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               dbus_proxy = "0.10.2-1",
+               enum = "0.1.1-1",
+               lgi = "0.9.2-1",
+               upower_dbus = "0.3.0-3"
+            },
+            modules = {
+               power_widget = "power_widget.lua"
+            }
+         }
+      }
+   },
+   upower_dbus = {
+      ["0.3.0-3"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               dbus_proxy = "0.10.2-1",
+               enum = "0.1.1-1",
+               lgi = "0.9.2-1"
+            },
+            modules = {
+               ["upower_dbus.init"] = "upower_dbus/init.lua"
+            }
+         }
+      }
+   }
+}

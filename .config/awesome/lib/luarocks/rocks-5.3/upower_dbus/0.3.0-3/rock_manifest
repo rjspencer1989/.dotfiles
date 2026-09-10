@@ -1,0 +1,15 @@
+rock_manifest = {
+   docs = {
+      ["index.html"] = "744839776178cb314411a0bc64bd105c",
+      ["ldoc.css"] = "e2b04e90ff648f8e00d9d4d458de59d9",
+      topics = {
+         ["README.md.html"] = "ecf7846ff2a3e20b273a10929fb91782"
+      }
+   },
+   lua = {
+      upower_dbus = {
+         ["init.lua"] = "df8dcc835597d746cdaf26e6e843144d"
+      }
+   },
+   ["upower_dbus-0.3.0-3.rockspec"] = "70b704fd2370caa6d4c44656e15616a4"
+}

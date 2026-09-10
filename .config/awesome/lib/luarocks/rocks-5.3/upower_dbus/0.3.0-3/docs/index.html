@@ -1,0 +1,441 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>upower_dbus</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Enumerations">Enumerations</a></li>
+<li><a href="#Device">Device</a></li>
+<li><a href="#Manager">Manager</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>upower_dbus</strong></li>
+</ul>
+<h2>Topics</h2>
+<ul class="">
+  <li><a href="topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>upower_dbus</code></h1>
+<p>Get information about your power devices using
+  <a href="https://upower.freedesktop.org/">UPower</a> and DBus.</p>
+<p>
+
+
+<p>  Requiring this module will return the UPower Manager singleton.</p>
+
+<p>  Example:</p>
+
+
+<pre>
+GLib = <span class="global">require</span>(<span class="string">"lgi"</span>).GLib
+ctx = GLib.MainLoop():get_context()
+upower = <span class="global">require</span>(<span class="string">"upower_dbus"</span>)
+<span class="comment">-- What version of UPower is in use?
+</span>upower.Manager.DaemonVersion
+<span class="comment">-- Are we using a battery?
+</span>upower.Manager.OnBattery
+<span class="comment">-- Enumerate the Device Types known by UPower
+</span><span class="keyword">for</span> _, v <span class="keyword">in</span> <span class="global">ipairs</span>(upower.enums.DeviceTypes) <span class="keyword">do</span> <span class="global">print</span>(v) <span class="keyword">end</span>
+<span class="comment">-- Say that the first device is a battery
+</span>battery = upower.Manager.devices[<span class="number">1</span>]
+<span class="global">print</span>(battery.Percentage) <span class="comment">-- may print 100.0
+</span><span class="comment">-- Update the devices in case something changed
+</span>ctx:iteration()
+<span class="comment">-- The battery discharged a bit
+</span>battery.Percentage <span class="comment">-- may print 99.0</span>
+</pre>
+
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2017 Stefano Mazzucco</li>
+        <li><strong>License</strong>: Apache License, version 2.0</li>
+        <li><strong>Author</strong>: Stefano Mazzucco <stefano AT curso DOT re></li>
+    </ul>
+
+
+<h2><a href="#Enumerations">Enumerations</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#upower.enums">upower.enums</a></td>
+	<td class="summary">UPower Enumerations.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DeviceType">DeviceType</a></td>
+	<td class="summary">The type of power source</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#BatteryState">BatteryState</a></td>
+	<td class="summary">The state of the battery.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#BatteryTechnology">BatteryTechnology</a></td>
+	<td class="summary">The technology used by the battery.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#BatteryWarningLevel">BatteryWarningLevel</a></td>
+	<td class="summary">The warning level of the battery.</td>
+	</tr>
+</table>
+<h2><a href="#Device">Device</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#upower.create_device">upower.create_device (path)</a></td>
+	<td class="summary">Create a new <a href="https://upower.freedesktop.org/docs/Device.html">UPower
+  Device</a>.</td>
+	</tr>
+</table>
+<h2><a href="#Manager">Manager</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#upower.Manager">upower.Manager</a></td>
+	<td class="summary">The UPower Manager that proxies the <a href="https://upower.freedesktop.org/docs/UPower.html">UPower DBus
+ interface</a>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Enumerations"></a>Enumerations</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "upower.enums"></a>
+    <strong>upower.enums</strong>
+    </dt>
+    <dd>
+    UPower Enumerations.
+ The <a href="index.html#upower.enums">upower.enums</a> table contains the below <a href="https://luarocks.org/modules/stefano-m/enum">Lua
+ Enumerations</a>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DeviceType"></a>
+    <strong>DeviceType</strong>
+    </dt>
+    <dd>
+    The type of power source
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Unknown</span>
+
+
+
+        </li>
+        <li><span class="parameter">Line Power</span>
+
+
+
+        </li>
+        <li><span class="parameter">Battery</span>
+
+
+
+        </li>
+        <li><span class="parameter">Ups</span>
+
+
+
+        </li>
+        <li><span class="parameter">Monitor</span>
+
+
+
+        </li>
+        <li><span class="parameter">Mouse</span>
+
+
+
+        </li>
+        <li><span class="parameter">Keyboard</span>
+
+
+
+        </li>
+        <li><span class="parameter">Pda</span>
+
+
+
+        </li>
+        <li><span class="parameter">Phone</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "BatteryState"></a>
+    <strong>BatteryState</strong>
+    </dt>
+    <dd>
+    The state of the battery.
+ This property is only valid if the device is a battery.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Unknown</span>
+
+
+
+        </li>
+        <li><span class="parameter">Charging</span>
+
+
+
+        </li>
+        <li><span class="parameter">Discharging</span>
+
+
+
+        </li>
+        <li><span class="parameter">Empty</span>
+
+
+
+        </li>
+        <li><span class="parameter">Fully charged</span>
+
+
+
+        </li>
+        <li><span class="parameter">Pending charge</span>
+
+
+
+        </li>
+        <li><span class="parameter">Pending discharge</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="index.html#DeviceType">DeviceType</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "BatteryTechnology"></a>
+    <strong>BatteryTechnology</strong>
+    </dt>
+    <dd>
+    The technology used by the battery.
+ This property is only valid if the device is a battery.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Unknown</span>
+
+
+
+        </li>
+        <li><span class="parameter">Lithium ion</span>
+
+
+
+        </li>
+        <li><span class="parameter">Lithium polymer</span>
+
+
+
+        </li>
+        <li><span class="parameter">Lithium iron phosphate</span>
+
+
+
+        </li>
+        <li><span class="parameter">Lead acid</span>
+
+
+
+        </li>
+        <li><span class="parameter">Nickel cadmium</span>
+
+
+
+        </li>
+        <li><span class="parameter">Nickel metal hydride</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="index.html#DeviceType">DeviceType</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "BatteryWarningLevel"></a>
+    <strong>BatteryWarningLevel</strong>
+    </dt>
+    <dd>
+    The warning level of the battery.
+ This property is only valid if the device is a battery.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Unknown</span>
+
+
+
+        </li>
+        <li><span class="parameter">None</span>
+
+
+
+        </li>
+        <li><span class="parameter">Discharging</span>
+        (only for UPSes)
+        </li>
+        <li><span class="parameter">Low</span>
+
+
+
+        </li>
+        <li><span class="parameter">Critical</span>
+
+
+
+        </li>
+        <li><span class="parameter">Action</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="index.html#DeviceType">DeviceType</a>
+    </ul>
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Device"></a>Device</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "upower.create_device"></a>
+    <strong>upower.create_device (path)</strong>
+    </dt>
+    <dd>
+    Create a new <a href="https://upower.freedesktop.org/docs/Device.html">UPower
+  Device</a>. </p>
+
+<p>  Rather than creating devices manually, you should use the
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+         The DBus object path for the device.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Manager"></a>Manager</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "upower.Manager"></a>
+    <strong>upower.Manager</strong>
+    </dt>
+    <dd>
+    The UPower Manager that proxies the <a href="https://upower.freedesktop.org/docs/UPower.html">UPower DBus
+ interface</a>.
+ Additionally the <code>devices</code> field contains the available Device objects.
+
+
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="index.html#upower.create_device">upower.create_device</a>
+    </ul>
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-11-05 15:01:46 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
