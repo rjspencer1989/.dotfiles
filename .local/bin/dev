@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+SESSION="dev"
+CORE="$HOME/5G/NFs/core"
+BUILD="$CORE/build"
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+    exec kitty --title dev-ide tmux attach -t "$SESSION"
+fi
+
+# new session
+tmux new-session -d -s "$SESSION" -c "$CORE" nvim
+
+# Create build window
+tmux new-window -t "$SESSION" -n build -c "$BUILD"
+
+# Create Git browser
+tmux new-window -t "$SESSION" -n Git -c "$CORE"
+
+# Create VPN window
+tmux new-window -t "$SESSION" -n "6GIC" -c "$HOME"
+
+# Create SCP window
+tmux new-window -t "$SESSION" -n "SCP" -c "$HOME"
+
+# Select vpn window
+tmux select-window -t "$SESSION:4"
+
+# Attach
+exec kitty --title dev-ide tmux attach -t "$SESSION"
