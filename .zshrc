@@ -91,6 +91,20 @@ alias gst='git status'
 alias gss='git status --short'
 alias gsb='git status --short --branch'
 
+# --- eza (maintained fork of exa) ---
+if type eza &> /dev/null; then
+    alias ls='eza'
+    alias ll='eza -l'
+    alias la='eza -la'
+    alias lt='eza --tree'
+fi
+
+# --- zoxide (smart cd: `z build`, `z PacketRusher`, etc.) ---
+type zoxide &> /dev/null && eval "$(zoxide init zsh)"
+
+# --- direnv (per-directory env vars via .envrc) ---
+type direnv &> /dev/null && eval "$(direnv hook zsh)"
+
 # User configuration
 
 # Set personal aliases
