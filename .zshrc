@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:/opt/firestorm-install:$HOME/.config/emacs/bin:$PATH
 
+# --- directory navigation ---
+setopt AUTO_CD  # typing a bare directory name (e.g. tab-completed) cd's into it, no `cd` needed
+
 # --- history (replaces oh-my-zsh lib/history.zsh) ---
 HISTFILE="$HOME/.zsh_history"
 [ "$HISTSIZE" -lt 50000 ] && HISTSIZE=50000
